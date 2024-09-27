@@ -1,0 +1,16 @@
+.inputs-div{
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.inputs {
+    border: 1px solid red;
+}
+.inputs:nth-child(2){
+    position: relative;
+    top: -19.5px;
+    background: none;
+    outline: none;
+}
