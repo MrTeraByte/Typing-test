@@ -1,49 +1,33 @@
-import {React , useState , useRef } from "react";
+import { React, useRef } from "react";
 import "../style/inputs.css";
 
+//have to fetch from other source
+let targetInput =
+" Nikola Tesla, a famous inventor, and electrical engineer born in 1856. He made numerous groundbreaking contributions to the design of the modern alternating current (AC) electricity supply system.";
+
 export default function Inputs() {
-  const targetInput = "hello world"
-  const [Result, setResult] = useState("");
-  let userInput = useRef("");
+  const invInput = useRef();
+  const words = targetInput.split(" ");
 
-  const checkWords = () => {
-    let userInputValue = userInput.current.value;
-
-    //check the last typed letter
-    if (
-      userInputValue[userInputValue.length - 1] ===
-      targetInput[userInputValue.length - 1]
-    ) {
-      userInput.current.style.border = "1px solid green";
-      console.log(true);
-      setResult(Result.concat("\ntrue"));
-    } else {
-      userInput.current.style.border = "1px solid red";
-      console.log(false);
-      setResult(Result.concat("\nfalse"));
-    }
-  };
+  function handleInput(e){
+    console.log(e.target.value)
+  }
 
   return (
-    <div className="inputs-div-container">
-      <div className="inputs-div">
-        <input
-          type="text"
-          placeholder={targetInput}
-          className="inputs"
-          disabled  
-        ></input>
-        <input
-          ref={userInput}
-          type="text"
-          className="inputs"
-          onInput={checkWords}
-        ></input>
-        <textarea
-          value={Result}
-          className=""
-        ></textarea>
-      </div>
+    <div className="target-text-container" onClick={() => {
+      invInput.current.focus();
+    }}>
+      {words.map((word) => {
+        return (
+          <div className="word-elem">
+            {word.split("").map((letter) => {
+              // console.log(letter);
+              return <div className="letter-elem">{letter}</div>;
+            })}
+          </div>
+        );
+      })}
+      <input className="invi-input" ref={invInput} onInput={(e) => handleInput(e)}></input>
     </div>
   );
 }
