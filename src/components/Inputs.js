@@ -1,4 +1,5 @@
 import { React, useRef } from "react";
+import KeyboardEventHandler from "react-keyboard-event-handler";
 import handleInput from "../scripts/handleInputs";
 import "../style/inputs.css";
 
@@ -31,16 +32,18 @@ export default function Inputs() {
           </div>
         );
       })}
-      <input
-        className="invi-input"
-        ref={invInput}
-        onInput={(e) => handleInput(e)}
-        onKeyDown={(e) => {
-          if (e.key === 'Backspace') {
-            e.preventDefault();
-          }
-        }}
-      ></input>
+      <KeyboardEventHandler
+        handleKeys={["backspace"]}
+        onKeyEvent={(key, e) =>
+          e.preventDefault()
+        }
+      >
+        <input
+          className="invi-input"
+          ref={invInput}
+          onInput={(e) => handleInput(e)}
+        ></input>
+      </KeyboardEventHandler>
     </div>
   );
 }
