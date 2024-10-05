@@ -1,6 +1,7 @@
 import { React, useRef } from "react";
 import KeyboardEventHandler from "react-keyboard-event-handler";
 import handleInput from "../scripts/handleInputs";
+
 import "../style/inputs.css";
 
 //have to fetch from other source
@@ -34,9 +35,9 @@ export default function Inputs() {
       })}
       <KeyboardEventHandler
         handleKeys={["backspace"]}
-        onKeyEvent={(key, e) =>
-          e.preventDefault()
-        }
+        // onKeyEvent={(key, e) =>
+        //   e.preventDefault()
+        // }
       >
         <input
           className="invi-input"

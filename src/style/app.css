@@ -3,3 +3,7 @@ body{
     margin: 0;
     background-color: #1E201E;
 }
+.main-container {
+    position: relative;
+    height: 100vh;
+}

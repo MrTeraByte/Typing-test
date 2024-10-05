@@ -1,0 +1,37 @@
+.status-container{
+    /* border: 1px solid red; */
+    /* background-color: antiquewhite; */
+    color: white;
+    height: 100vh;
+    transition: 255ms;
+    backdrop-filter: blur(20px);
+    z-index: 99;
+    transition: 255ms;
+}
+.basic-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    line-height: 1px;
+}
+
+.status{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 20%;
+    text-align: center;
+    /* border: 1px solid red; */
+}
+.status-div{
+    /* border: 1px solid green; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: underline;
+    font-size: 1.4em;
+}
