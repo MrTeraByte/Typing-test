@@ -1,11 +1,9 @@
 import "../style/status.css";
 
-let wpm = true;
-
-export default function Status() {
+export default function Status({wpm , accuracy}) {
   return (
     <div className="status-container">
-      {!wpm ? (
+      {wpm == null ? (
         <div className="basic-info">
           <p>Press enter or click here to start</p>
           <p>Backspace is disabled, be careful!</p>
@@ -13,8 +11,8 @@ export default function Status() {
       ) : (
         <div className="status">
           <div className="status-div">
-            <span>45 WPM</span>
-            <span>80% Accuracy</span>
+            <p><span className="status-numbers">{wpm}</span> WPM</p>
+            <p><span className="status-numbers">{accuracy}%</span> Accuracy</p>
           </div>
           <p>Press 'ENTER' to restart again.</p>
         </div>

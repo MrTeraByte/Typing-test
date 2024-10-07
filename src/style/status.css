@@ -1,12 +1,17 @@
 .status-container{
     /* border: 1px solid red; */
     /* background-color: antiquewhite; */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     color: white;
     height: 100vh;
     transition: 255ms;
     backdrop-filter: blur(20px);
-    z-index: 99;
     transition: 255ms;
+    z-index: 10;
 }
 .basic-info {
     position: absolute;
@@ -34,4 +39,10 @@
     align-items: center;
     text-decoration: underline;
     font-size: 1.4em;
+}
+.status-numbers {
+    font-size: 1.9em;
+}
+.status-div p {
+    font-size: 20px;    
 }
