@@ -23,7 +23,7 @@ function App() {
       {showStatus && <Status {...statusProps} />}
       {startTimer && (
         <Timer
-          finishTime={3}
+          finishTime={120}
           onTimerEnd={() => {
             setStatusProps({
               wpm: 45,

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 
+import "../style/timer.css";
+
+
 function Timer({ finishTime, onTimerEnd }) {
   const [seconds, setSeconds] = useState(finishTime);
 
@@ -22,8 +25,8 @@ function Timer({ finishTime, onTimerEnd }) {
   }, [finishTime, onTimerEnd]);
 
   return (
-    <div>
-      <h1>{seconds}s</h1>
+    <div className="timer">
+      <span>{seconds}s</span>
     </div>
   );
 }
