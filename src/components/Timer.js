@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-
 import "../style/timer.css";
-
 
 function Timer({ finishTime, onTimerEnd }) {
   const [seconds, setSeconds] = useState(finishTime);
@@ -18,9 +16,8 @@ function Timer({ finishTime, onTimerEnd }) {
         }
         return prevSeconds - 1;
       });
-      console.log("a sec passed");
     }, 1000);
-
+    
     return () => clearInterval(intervalId);
   }, [finishTime, onTimerEnd]);
 

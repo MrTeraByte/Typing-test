@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import KeyboardEventHandler from "react-keyboard-event-handler";
-import Inputs from "./components/Inputs.js";
+import UserInputArea from "./components/UserInputArea.js";
 import Status from "./components/Status.js";
+import Timer from "./components/Timer.js";
 
 import "./style/app.css";
-import Timer from "./components/Timer.js";
 
 function App() {
   const [showStatus, setShowStatus] = useState(true);
   const [startTimer, setStartTimer] = useState(false);
   const [statusProps, setStatusProps] = useState({});
+  const userInputRef = useRef();
 
   return (
     <div className="main-container">
@@ -18,6 +19,7 @@ function App() {
         onKeyEvent={() => {
           setShowStatus(false);
           setStartTimer(true);
+          userInputRef.current.focus()
         }}
       />
       {showStatus && <Status {...statusProps} />}
@@ -34,7 +36,7 @@ function App() {
           }}
         />
       )}
-      <Inputs />
+      <UserInputArea ref={userInputRef}/>
     </div>
   );
 }
