@@ -56,7 +56,8 @@ const UserInputArea = forwardRef(({}, ref) => {
             <div className="letter-elem" key={letterIndex}>
               {letter}
             </div>
-          ))}
+            );
+          })}
         </div>
       ))}
       <KeyboardEventHandler
