@@ -6,7 +6,7 @@ function Timer({ finishTime, onTimerEnd }) {
 
   useEffect(() => {
     setSeconds(finishTime);
-
+    
     const intervalId = setInterval(() => {
       setSeconds((prevSeconds) => {
         if (prevSeconds <= 1) {

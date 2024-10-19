@@ -20,6 +20,7 @@ function App() {
           setShowStatus(false);
           setStartTimer(true);
           userInputRef.current.focus()
+          console.info(`Timer started!`)
         }}
       />
       {showStatus && <Status {...statusProps} />}

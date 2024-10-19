@@ -31,9 +31,13 @@
 .wrong{
     color: rgb(255, 61, 61);
 }
-.current-word{
+.current-letter{
     border-bottom: 1px solid gray;
     transform: scale(1.3);
+}
+.space{
+    border-bottom: 1px solid gray;
+    padding: 2px;
 }
 .invi-input{
     opacity: 0;

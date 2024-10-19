@@ -5,11 +5,10 @@ import React, {
   useState,
 } from "react";
 import KeyboardEventHandler from "react-keyboard-event-handler";
-import matchWords from "../scripts/matchWords";
 
-import "../style/inputs.css";
+import "../style/userInputsArea.css";
 
-export let targetInput = [
+let targetInput = [
   "Nikola Tesla, a famous inventor, and electrical engineer born in 1856. He made numerous groundbreaking contributions to the design of the modern alternating current (AC) electricity supply system.",
   "Electricity is a fundamental form of energy resulting from the movement of charged particles. It powers our homes, fuels industries, and drives technology, making it essential for modern life and innovation.",
   "Nikola Tesla's innovations in radio technology paved the way for wireless communication. His experiments with electromagnetic waves led to the development of radio transmission, revolutionizing global communication.",
@@ -17,12 +16,18 @@ export let targetInput = [
 
 const UserInputArea = forwardRef(({}, ref) => {
   const [wordsIndex, setWordIndex] = useState(0);
+  const [currentInputIndex, setCurrentInputIndex] = useState(0);
   const invInput = useRef();
   const words = targetInput[wordsIndex].split(" ");
+
+  //global counter for letter indexing,helps for cursur
+  let globalLetteringIndex = 0;
 
   //changes the outputing sentence on complete
   const wordsIndexHandler = (e) => {
     let userInputs = e.target.value.split("");
+    setCurrentInputIndex(userInputs.length);
+    console.log("current index" + currentInputIndex);
 
     if (userInputs.length === targetInput[wordsIndex].length) {
       setWordIndex((prev) => {
@@ -32,9 +37,11 @@ const UserInputArea = forwardRef(({}, ref) => {
         return prev + 1;
       });
       e.target.value = "";
+      setCurrentInputIndex(0);
     }
   };
 
+  //passing input ref to parent component
   useImperativeHandle(ref, () => ({
     focus: () => {
       if (invInput.current) {
@@ -50,16 +57,30 @@ const UserInputArea = forwardRef(({}, ref) => {
         invInput.current.focus();
       }}
     >
+      {/* wraping every word in an elem than every letter in elem inside word elem with a lettering index*/}
       {words.map((word, wordIndex) => (
-        <div className="word-elem" key={wordIndex}>
-          {word.split("").map((letter, letterIndex) => (
-            <div className="letter-elem" key={letterIndex}>
-              {letter}
-            </div>
+        <div className={`word-elem`} key={wordIndex}>
+          {word.split("").map((letter) => {
+            const currentLetterIndex = globalLetteringIndex++;
+            // const isCorrect = invInput.current?.value === targetInput[0][currentInputIndex]
+            // console.log(targetInput[0][currentInputIndex - 1])
+
+            return (
+              <div
+                className={`letter-elem ${
+                  currentLetterIndex == currentInputIndex
+                    ? "current-letter"
+                    : ""
+                }`}
+                key={currentLetterIndex}
+              >
+                {letter}
+              </div>
             );
           })}
         </div>
       ))}
+      {/* preventing backspace in input */}
       <KeyboardEventHandler
         handleKeys={["backspace"]}
         onKeyEvent={(key, e) => {
