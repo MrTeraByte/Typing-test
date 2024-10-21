@@ -5,7 +5,7 @@ import Status from "./components/Status.js";
 import Timer from "./components/Timer.js";
 
 import "./style/app.css";
-
+//logich
 function App() {
   const [showStatus, setShowStatus] = useState(true);
   const [startTimer, setStartTimer] = useState(false);
