@@ -43,7 +43,6 @@ function App() {
     <div className="main-container">
       {showStatus && <Status {...statusProps} />}
       {!showStatus && <Timer finishTime={10} onTimerEnd={showResult} />}
-      {/* <UserInputArea ref={userInputRef} /> */}
       <Letters targetInput={targetInput} userInputRef={userInputRef} />
       <KeyboardEventHandler
         handleKeys={["backspace","space"]}
