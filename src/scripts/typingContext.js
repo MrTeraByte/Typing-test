@@ -8,7 +8,7 @@ export function TypingContextProvider({ children }) {
   const [totalTyped, setTotalTyped] = useState(0);
   const [incorrectTyped, setIncorrectTyped] = useState(0);
   const [currentParaIndex, setCurrentParaIndex] = useState(0);
-src/scripts/typingContext.js
+
   return (
     <TypingContext.Provider
       value={{
