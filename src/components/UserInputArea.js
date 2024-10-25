@@ -5,6 +5,7 @@ import React, {
   useState,
 } from "react";
 import KeyboardEventHandler from "react-keyboard-event-handler";
+import getText from "../scripts/getTexts";
 
 import "../style/userInputsArea.css";
 

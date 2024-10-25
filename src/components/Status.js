@@ -3,7 +3,7 @@ import "../style/status.css";
 export default function Status({wpm , accuracy}) {
   return (
     <div className="status-container">
-      {wpm == null ? (
+      {wpm == null || accuracy == null ? (
         <div className="basic-info">
           <p>Press enter or click here to start</p>
           <p>Backspace is disabled, be careful!</p>

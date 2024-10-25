@@ -1,44 +1,76 @@
-import React, { useRef, useState } from "react";
+import React, { Component, useEffect, useRef, useState } from "react";
 import KeyboardEventHandler from "react-keyboard-event-handler";
-import UserInputArea from "./components/UserInputArea.js";
+
+// Components
 import Status from "./components/Status.js";
 import Timer from "./components/Timer.js";
+import Letters from "./components/letters.js";
 
+// scripts
+import { TypingContextProvider } from "./scripts/typingContext.js";
+import getText from "./scripts/getTexts.js";
+import useUserInputHandler from "./scripts/handleUserInput.js";
+
+// style
 import "./style/app.css";
-//logich
+
 function App() {
   const [showStatus, setShowStatus] = useState(true);
-  const [startTimer, setStartTimer] = useState(false);
   const [statusProps, setStatusProps] = useState({});
+  const [targetInput, setTargetInput] = useState("");
   const userInputRef = useRef();
+  const handleUserInput = useUserInputHandler();
+
+  useEffect(() => {
+    setTargetInput(() => {
+      return getText();
+    });
+  }, []);
+
+  function showResult() {
+    userInputRef.current.blur();
+    userInputRef.current.value = "";
+    setShowStatus(true);
+    setStatusProps({
+      wpm: 45,
+      accuracy: 80,
+    });
+    return 0;
+  }
 
   return (
-    <div className="main-container">
-      <KeyboardEventHandler
-        handleKeys={["enter"]}
-        onKeyEvent={() => {
-          setShowStatus(false);
-          setStartTimer(true);
-          userInputRef.current.focus()
-          console.info(`Timer started!`)
-        }}
-      />
-      {showStatus && <Status {...statusProps} />}
-      {startTimer && (
-        <Timer
-          finishTime={120}
-          onTimerEnd={() => {
-            setStatusProps({
-              wpm: 45,
-              accuracy: 80,
+    <TypingContextProvider>
+      <div className="main-container">
+        {showStatus && <Status {...statusProps} />}
+        {!showStatus && <Timer finishTime={6} onTimerEnd={showResult} />}
+        {/* <UserInputArea ref={userInputRef} /> */}
+        <Letters targetInput={targetInput} userInputRef={userInputRef} />
+        <KeyboardEventHandler
+          handleKeys={["backspace"]}
+          onKeyEvent={(key, e) => {
+            e.preventDefault();
+            // Handle backspace logic here
+          }}
+        >
+          <input
+            className="invi-input"
+            ref={userInputRef}
+            onInput={handleUserInput}
+          />
+        </KeyboardEventHandler>
+        <KeyboardEventHandler
+          handleKeys={["enter"]}
+          onKeyEvent={() => {
+            setTargetInput(() => {
+              return getText();
             });
-            setShowStatus(true);
-            setStartTimer(false);
+            setShowStatus(false);
+            userInputRef.current.focus();
+            console.info(`enter pressed`);
           }}
         />
-      )}
-      <UserInputArea ref={userInputRef}/>
-    </div>
+      </div>
+    </TypingContextProvider>
   );
 }
 
