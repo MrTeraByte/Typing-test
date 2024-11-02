@@ -25,7 +25,7 @@
     margin: 0.5px;
     transition: 255ms;
 }
-.typed {
+.correct {
     color: rgb(255, 255, 255);
 }
 .wrong{
@@ -40,5 +40,5 @@
     padding: 2px;
 }
 .invi-input{
-    opacity: 0;
+    opacity: 1;
 }
