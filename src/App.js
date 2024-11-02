@@ -13,14 +13,22 @@ import { TypingContext } from "./scripts/typingContext";
 
 // style
 import "./style/app.css";
+import useShowResult from "./scripts/results.js";
 
 function App() {
   const [showStatus, setShowStatus] = useState(true);
   const [statusProps, setStatusProps] = useState({});
   const [targetInput, setTargetInput] = useState("");
-  const { userInput, setUserInput, setCurrentParaIndex} = useContext(TypingContext);
+  const { userInput, setUserInput, setCurrentParaIndex } =
+    useContext(TypingContext);
   const userInputRef = useRef(userInput);
   const handleUserInput = useUserInputHandler(targetInput);
+  const showResult = useShowResult(
+    userInputRef,
+    setShowStatus,
+    setStatusProps,
+    targetInput
+  );
 
   useEffect(() => {
     setTargetInput(() => {
@@ -28,27 +36,16 @@ function App() {
     });
   }, []);
 
-  function showResult() {
-    userInputRef.current.blur();
-    userInputRef.current.value = "";
-    setShowStatus(true);
-    setStatusProps({
-      wpm: 45,
-      accuracy: 80,
-    });
-    return 0;
-  }
 
   return (
     <div className="main-container">
       {showStatus && <Status {...statusProps} />}
-      {!showStatus && <Timer finishTime={10} onTimerEnd={showResult} />}
-      <Letters targetInput={targetInput} userInputRef={userInputRef} />
+      {!showStatus && <Timer finishTime={30} onTimerEnd={showResult} />}
+      <Letters key={targetInput} targetInput={targetInput} userInputRef={userInputRef} />
       <KeyboardEventHandler
-        handleKeys={["backspace","space"]}
+        handleKeys={["backspace", "space"]}
         onKeyEvent={(key, e) => {
           e.preventDefault();
-          // Handle backspace logic here
         }}
       >
         <input
@@ -63,7 +60,7 @@ function App() {
           setTargetInput(() => {
             return getText();
           });
-          setCurrentParaIndex(0)
+          setCurrentParaIndex(0);
           setShowStatus(false);
           userInputRef.current.focus();
           setUserInput("");

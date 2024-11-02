@@ -6,32 +6,49 @@ const useUserInputHandler = (targetInput) => {
   const {
     userInput,
     setUserInput,
+    totalTyped,
+    setTotalTyped,
     currentParaIndex,
     setCurrentParaIndex,
     setCorrectLetters,
+    incorrectLetters,
+    setIncorrectLetters,
   } = useContext(TypingContext);
 
   const handleUserInput = (e) => {
     let userInputValue = e.target.value;
-    setUserInput(e.target.value);
-    console.log(`User input: ${userInput}`);
-    console.log(`current userinput length: ${e.target.value.length}`);
-    console.log(`current para length: ${targetInput[currentParaIndex].length}`);
 
-    const correct = userInputValue.split("").map((char,index) => {
-      return char === targetInput[currentParaIndex].split(" ").join("")[index]
-    })
-    setCorrectLetters(correct)
+    setUserInput(userInputValue);
+    setTotalTyped(
+      (prevTotal) => prevTotal + userInputValue.slice(userInput.length)
+    );
+
+    console.log(
+      `User input: ${userInputValue}\nCurrent user input length: ${e.target.value.length}\nCurrent paragraph length: ${targetInput[currentParaIndex].length}\nTotal input: ${totalTyped}\nTotal input length: ${totalTyped.length}\nIncorrect letters: ${incorrectLetters}`
+    );
+
+    const correct = userInputValue.split("").map((char, index) => {
+      return char === targetInput[currentParaIndex].split(" ").join("")[index];
+    });
+
+    let incorrectCount = correct.filter((isCorrect) => !isCorrect).length;
+    setIncorrectLetters((prevIncorrect) => prevIncorrect + incorrectCount);
+ 
+    setCorrectLetters(correct);
 
     //para index changer
-    if (userInputValue.length >= targetInput[currentParaIndex].split(" ").join("").length) {
-      e.target.value = "";
-      setUserInput(e.target.value);
+    if (
+      userInputValue.length >=
+      targetInput[currentParaIndex].split(" ").join("").length
+    ) {
       setCurrentParaIndex((prev) => {
         if (prev + 1 >= targetInput.length) {
           setCorrectLetters([]);
+          setIncorrectLetters(0);
           return 0;
         }
+        console.log(totalTyped);
+        e.target.value = "";
         setCorrectLetters([]);
         return prev + 1;
       });

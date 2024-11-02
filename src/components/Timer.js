@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "../style/timer.css";
 
-function Timer({ finishTime, onTimerEnd }) {
+export default function Timer({ finishTime, onTimerEnd }) {
   const [seconds, setSeconds] = useState(finishTime);
 
-  // Start the timer effect
+  // Start the timer
   useEffect(() => {
-    // Set the initial seconds only on mount
     setSeconds(finishTime);
-  }, [finishTime]); // This only sets the initial value
+  }, [finishTime]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -32,5 +31,3 @@ function Timer({ finishTime, onTimerEnd }) {
     </div>
   );
 }
-
-export default Timer;
