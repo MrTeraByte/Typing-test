@@ -9,7 +9,7 @@ export function TypingContextProvider({ children }) {
   const [currentParaIndex, setCurrentParaIndex] = useState(0);
   const [incorrectLetters, setIncorrectLetters] = useState(0);
   const [globalIncLetters, setGlobalIncLetters] = useState([]);
-
+  
   return (
     <TypingContext.Provider
       value={{
