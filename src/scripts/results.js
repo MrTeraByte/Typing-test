@@ -42,8 +42,6 @@ export default function useShowResult(
     const accuracy = Math.round((correctCount / totalTyped.length) * 100);
     wpmRef.current = wordsPerMinute;
     accuracyRef.current = accuracy;
-    console.log(`total type ${totalTyped.length}`);
-    console.log(`IncCorrect ${correctCount}`);
   }, [totalTyped, targetInput]);
 
   const showResult = () => {

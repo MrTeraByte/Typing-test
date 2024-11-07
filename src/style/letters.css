@@ -1,5 +1,4 @@
 .target-text-container {
-    /* border: 1px solid red; */
     color: #979797;
     position: absolute;
     top: 50%;
@@ -11,9 +10,17 @@
     align-content: space-between;
     font-size: 1.7vw;
     z-index: 1;
+    animation: wordsAnim 1s;
+}
+@keyframes wordsAnim {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 .word-elem {
-    /* border: 1px solid green; */
     display: flex;
     margin: 5px;
 }
@@ -21,7 +28,6 @@
     cursor: text;
 }
 .letter-elem {
-    /* border: 1px solid blue; */
     margin: 0.5px;
     transition: 255ms;
 }
