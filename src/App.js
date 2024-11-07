@@ -36,12 +36,15 @@ function App() {
     });
   }, []);
 
-
   return (
     <div className="main-container">
       {showStatus && <Status {...statusProps} />}
       {!showStatus && <Timer finishTime={30} onTimerEnd={showResult} />}
-      <Letters key={targetInput} targetInput={targetInput} userInputRef={userInputRef} />
+      <Letters
+        key={targetInput}
+        targetInput={targetInput}
+        userInputRef={userInputRef}
+      />
       <KeyboardEventHandler
         handleKeys={["backspace", "space"]}
         onKeyEvent={(key, e) => {

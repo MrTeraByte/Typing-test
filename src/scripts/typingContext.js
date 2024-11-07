@@ -8,6 +8,7 @@ export function TypingContextProvider({ children }) {
   const [totalTyped, setTotalTyped] = useState("");
   const [currentParaIndex, setCurrentParaIndex] = useState(0);
   const [incorrectLetters, setIncorrectLetters] = useState(0);
+  const [globalIncLetters, setGlobalIncLetters] = useState([]);
 
   return (
     <TypingContext.Provider
@@ -21,7 +22,9 @@ export function TypingContextProvider({ children }) {
         currentParaIndex,
         setCurrentParaIndex,
         incorrectLetters,
-        setIncorrectLetters
+        setIncorrectLetters,
+        globalIncLetters,
+        setGlobalIncLetters,
       }}
     >
       {children}
