@@ -39,7 +39,7 @@ function App() {
   return (
     <div className="main-container">
       {showStatus && <Status {...statusProps} />}
-      {!showStatus && <Timer finishTime={30} onTimerEnd={showResult} />}
+      {!showStatus && <Timer finishTime={120} onTimerEnd={showResult} />}
       <Letters
         key={targetInput}
         targetInput={targetInput}

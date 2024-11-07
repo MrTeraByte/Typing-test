@@ -32,15 +32,18 @@ export default function useShowResult(
       (total, currentValue) => total + currentValue,
       0
     );
+
     return globalIncSum + incorrectLetters;
   };
 
   useEffect(() => {
-    const correctCount = totalTyped.length - getIncorrectCount;
-    const wordsPerMinute = Math.ceil(totalTyped.length / 5 / 2);
+    const correctCount = totalTyped.length - getIncorrectCount();
+    const wordsPerMinute = Math.round(totalTyped.length / 5)  * (60 / 120);
     const accuracy = Math.round((correctCount / totalTyped.length) * 100);
     wpmRef.current = wordsPerMinute;
     accuracyRef.current = accuracy;
+    console.log(`total type ${totalTyped.length}`);
+    console.log(`IncCorrect ${correctCount}`);
   }, [totalTyped, targetInput]);
 
   const showResult = () => {

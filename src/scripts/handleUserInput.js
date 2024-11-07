@@ -16,7 +16,6 @@ const useUserInputHandler = (targetInput) => {
   } = useContext(TypingContext);
 
   const handleUserInput = (e) => {
-    console.log(`func runned`);
     let userInputValue = e.target.value;
 
     setUserInput(userInputValue);
@@ -29,7 +28,7 @@ const useUserInputHandler = (targetInput) => {
     });
 
     let incorrectCount = correct.filter((isCorrect) => !isCorrect).length;
-    setIncorrectLetters((prevIncorrect) => prevIncorrect + incorrectCount);
+    setIncorrectLetters(incorrectCount);
 
     setCorrectLetters(correct);
 

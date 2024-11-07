@@ -15,7 +15,7 @@
 .word-elem {
     /* border: 1px solid green; */
     display: flex;
-    margin: 2px;
+    margin: 5px;
 }
 .word-elem:hover{
     cursor: text;
@@ -40,5 +40,5 @@
     padding: 2px;
 }
 .invi-input{
-    opacity: 1;
+    opacity: 0;
 }
