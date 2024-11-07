@@ -41,7 +41,6 @@ const useUserInputHandler = (targetInput) => {
         if (prev + 1 >= targetInput.length) {
           return 0;
         }
-        console.log(totalTyped);
         e.target.value = "";
         setCorrectLetters([]);
         setGlobalIncLetters((prevIncorrects) => {

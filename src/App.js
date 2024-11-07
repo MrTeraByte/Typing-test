@@ -67,7 +67,6 @@ function App() {
           setShowStatus(false);
           userInputRef.current.focus();
           setUserInput("");
-          console.info(`enter pressed`);
         }}
       />
     </div>
