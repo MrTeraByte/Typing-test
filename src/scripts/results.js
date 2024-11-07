@@ -5,10 +5,16 @@ export default function useShowResult(
   userInputRef,
   setShowStatus,
   setStatusProps,
-  targetInput,
+  targetInput
 ) {
-  const { userInput, setTotalTyped, totalTyped, incorrectLetters,setIncorrectLetters } =
-    useContext(TypingContext);
+  const {
+    setTotalTyped,
+    totalTyped,
+    incorrectLetters,
+    setIncorrectLetters,
+    globalIncLetters,
+    setGlobalIncLetters,
+  } = useContext(TypingContext);
   const wpmRef = useRef(0);
   const accuracyRef = useRef(0);
 
@@ -20,14 +26,21 @@ export default function useShowResult(
     return total;
   };
 
+  const getIncorrectCount = () => {
+    const globalIncSum = globalIncLetters.reduce(
+      (total, currentValue) => total + currentValue,
+      0
+    );
+
+    return globalIncSum + incorrectLetters;
+  };
+
   useEffect(() => {
-    const wordsPerMinute = Math.ceil((totalTyped.length / 5) / 2);
-    const accuracy = Math.round(((totalTyped.length - incorrectLetters) / totalTyped.length) * 100)
+    const correctCount = totalTyped.length - getIncorrectCount();
+    const wordsPerMinute = Math.round(totalTyped.length / 5)  * (60 / 120);
+    const accuracy = Math.round((correctCount / totalTyped.length) * 100);
     wpmRef.current = wordsPerMinute;
     accuracyRef.current = accuracy;
-    // console.log("incorrect letters " + incorrectLetters);
-    // console.log("wpm " + wpmRef.current);
-    // console.log("accuracy " + accuracy);
   }, [totalTyped, targetInput]);
 
   const showResult = () => {
@@ -36,12 +49,12 @@ export default function useShowResult(
       wpm: wpmRef.current,
       accuracy: accuracyRef.current,
     });
-    // console.log("wpm " + wpmRef.current);
     userInputRef.current.blur();
     userInputRef.current.value = "";
     totalWords();
     setTotalTyped("");
-    setIncorrectLetters(0)
+    setIncorrectLetters(0);
+    setGlobalIncLetters([]);
   };
 
   return showResult;

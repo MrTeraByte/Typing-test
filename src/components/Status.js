@@ -5,8 +5,8 @@ export default function Status({wpm , accuracy}) {
     <div className="status-container">
       {wpm == null || accuracy == null ? (
         <div className="basic-info">
-          <p>Press enter or click here to start</p>
-          <p>Backspace is disabled, be careful!</p>
+          <p>Press enter to start</p>
+          <p>No 'Space' and 'Backspace' is disabled, be careful!</p>
         </div>
       ) : (
         <div className="status">

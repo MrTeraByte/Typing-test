@@ -36,12 +36,15 @@ function App() {
     });
   }, []);
 
-
   return (
     <div className="main-container">
       {showStatus && <Status {...statusProps} />}
-      {!showStatus && <Timer finishTime={30} onTimerEnd={showResult} />}
-      <Letters key={targetInput} targetInput={targetInput} userInputRef={userInputRef} />
+      {!showStatus && <Timer finishTime={120} onTimerEnd={showResult} />}
+      <Letters
+        key={targetInput}
+        targetInput={targetInput}
+        userInputRef={userInputRef}
+      />
       <KeyboardEventHandler
         handleKeys={["backspace", "space"]}
         onKeyEvent={(key, e) => {
@@ -64,7 +67,6 @@ function App() {
           setShowStatus(false);
           userInputRef.current.focus();
           setUserInput("");
-          console.info(`enter pressed`);
         }}
       />
     </div>

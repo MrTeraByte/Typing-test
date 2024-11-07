@@ -1,6 +1,4 @@
 .status-container{
-    /* border: 1px solid red; */
-    /* background-color: antiquewhite; */
     position: absolute;
     top: 0;
     bottom: 0;
@@ -29,15 +27,12 @@
     transform: translate(-50%,-50%);
     width: 20%;
     text-align: center;
-    /* border: 1px solid red; */
 }
 .status-div{
-    /* border: 1px solid green; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    text-decoration: underline;
     font-size: 1.4em;
 }
 .status-numbers {
