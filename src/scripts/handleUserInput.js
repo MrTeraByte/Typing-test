@@ -6,7 +6,6 @@ const useUserInputHandler = (targetInput) => {
   const {
     userInput,
     setUserInput,
-    totalTyped,
     setTotalTyped,
     currentParaIndex,
     setCurrentParaIndex,
