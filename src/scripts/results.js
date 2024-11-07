@@ -8,7 +8,6 @@ export default function useShowResult(
   targetInput
 ) {
   const {
-    userInput,
     setTotalTyped,
     totalTyped,
     incorrectLetters,
